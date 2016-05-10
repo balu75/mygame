@@ -76,20 +76,29 @@ while not game_exit:
 
 
     # collision check ball with left bar
-    print("ball.x="+str(a_ball.x)+"lbar.width="+str(lbar.width))
+    #print("ball.x="+str(a_ball.x)+"lbar.width="+str(lbar.width))
     
     if a_ball.x-a_ball.width == lbar.width:
         if a_ball.y >= lbar.pos and a_ball.y <= lbar.pos + lbar.height:
             # bounce ball
-            print("bounce...")
+            #print("bounce...")
             a_ball.delta_x *= -1
 
     if a_ball.x+a_ball.width == max_x - rbar.width:
         if a_ball.y >= rbar.pos and a_ball.y <= rbar.pos + rbar.height:
             # bounce ball
-            print("bounce...")
+            #print("bounce...")
             a_ball.delta_x *= -1
 
+    # collision check ball with border
+    if a_ball.x - a_ball.width  <= 0:
+        # game over
+        game_exit = True
+
+    if a_ball.x >= max_x :
+        # game over
+        game_exit = True
+    
     for obj in objects:
         obj.move()
 
